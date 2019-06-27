@@ -1,0 +1,33 @@
+{% extends 'base.html' %} 
+{% block content %}
+    <h2>{{ page_title }}</h2>
+
+    <p>The Monkees are an American rock and pop band originally active between 1966 and 1971, with reunion albums and tours in the decades that followed. They were formed in Los Angeles in 1965 by Bob Rafelson and Bert Schneider specifically for the American television series The Monkees, which aired from 1966 to 1968. The musical acting quartet was composed of Americans Micky Dolenz, Michael Nesmith, and Peter Tork; and the English actor and singer Davy Jones.</p>
+        
+    {% for member in company %} 
+        {% if loop.index % 2 != 0 %}
+            <div class="row featurette">
+                <div class="col-md-7">
+                    <h3><a href="/about/{{ member.url }}">{{ loop.index }}. {{ member.name }}</a></h3>
+                    <p>{{ member.description }}</p>
+                </div>
+                <div class="col-md-5">
+                    <img class="featurette-image img-responsive" src="{{ member.image_source }}" alt="Picture of {{ member.name }}">
+                </div>
+            </div>
+        {% else %}
+            <div class="row featurette">
+                <div class="col-md-5">
+                    <img class="featurette-image img-responsive" src="{{ member.image_source }}" alt="Picture of {{ member.name }}">
+                </div>
+                <div class="col-md-7">
+                    <h3><a href="/about/{{ member.url }}">{{ loop.index }}. {{ member.name }}</a></h3>
+                    <p>{{ member.description }}</p>
+                </div>
+            </div>
+        {% endif %} 
+        {% if loop.index != 13 %}
+            <hr class="featurette-divider"> 
+        {% endif %} 
+    {% endfor %} 
+{% endblock %}
